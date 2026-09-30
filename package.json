@@ -12,12 +12,12 @@
     "build": "ssx build --force",
     "build:incremental": "ssx build",
     "preview": "serve dist",
-    "verify": "node verify.mjs",
-    "verify:responsive": "node verify-responsive.mjs",
-    "verify:nav": "node verify-nav.mjs",
-    "measure:cls": "node measure-cls.mjs",
-    "measure:perf": "node measure-perf.mjs",
-    "shots": "node shot.mjs /:light /:dark /research:light /teaching:dark /work:light /programs:dark /contact:light /programs/session:light:fold /programs/guide:dark"
+    "verify": "node scripts/verify.mjs",
+    "verify:responsive": "node scripts/verify-responsive.mjs",
+    "verify:nav": "node scripts/verify-nav.mjs",
+    "measure:cls": "node scripts/measure-cls.mjs",
+    "measure:perf": "node scripts/measure-perf.mjs",
+    "shots": "node scripts/shot.mjs /:light /:dark /research:light /teaching:dark /work:light /programs:dark /contact:light /programs/session:light:fold /programs/guide:dark"
   },
   "dependencies": {
     "@inglorious/ssx": "^2.1.5",

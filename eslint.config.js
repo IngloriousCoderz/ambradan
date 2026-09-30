@@ -3,8 +3,8 @@ import node from "@inglorious/eslint-config/node"
 import globals from "globals"
 
 /**
- * `src/` is browser code and gets the browser config. The verification scripts
- * at the repo root are Node CLIs: they run under Playwright, print a report and
+ * `src/` is browser code and gets the browser config. The scripts in
+ * `scripts/` are Node CLIs: they run under Playwright, print a report and
  * legitimately use `process` and `console.log`, none of which the browser config
  * allows.
  */
@@ -34,7 +34,9 @@ export default [
 
   {
     name: "verification scripts",
-    files: ["*.mjs"],
+    // `**/` matters: in flat config a bare `*.mjs` only matches the root, so
+    // these files would be linted as browser code the moment they moved.
+    files: ["scripts/**/*.mjs"],
     languageOptions: {
       globals: { ...globals.node },
     },

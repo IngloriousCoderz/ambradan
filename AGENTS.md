@@ -62,7 +62,7 @@ before trusting a skill file.** The CSS export paths are
   localised root as the bare prefix, so the Italian home is `/it`, and that is
   what `localePath()` must return. The same applies to a link the server would
   redirect, and to any href `localePath()` is handed that is not site-relative.
-  `verify.mjs` now checks every internal href against the route list.
+  `scripts/verify.mjs` now checks every internal href against the route list.
 - **The heading tag is the document outline, the class is the type scale.**
   `site-h3` on an `h2` is deliberate: the class picks the size, the tag picks
   the level. Where the same component is used both under an `h2` and directly

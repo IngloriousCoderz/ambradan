@@ -95,6 +95,7 @@ src/
     fonts.css          self-hosted Archivo and JetBrains Mono, subset
     theme.css          the `ambra` theme: tokens on top of @inglorious/ui
   types/               one folder per type: template, handlers, helpers, style
+scripts/               browser-driven checks, measurements and screenshots
 ```
 
 ## Adding something
@@ -157,7 +158,7 @@ unless the type needs several instances or a starting value — then declare it 
   `font-display` stays `swap`: `optional` scores the same once the font is
   small, and would risk the fallback for the whole first view on a slow one.
 - **Screenshots and the avatar are WebP**, converted at `-q 82`, which is 44%
-  smaller than the JPEG originals. `verify.mjs` fails on any image that decodes
+  smaller than the JPEG originals. `scripts/verify.mjs` fails on any image that decodes
   to nothing, so a stale `.jpg` path cannot ship.
 - **Compare nav paths exactly.** The Italian "Home" item is `/it`, which is a
   prefix of every Italian route, so a prefix match would light it up on every

@@ -96,6 +96,8 @@ src/
     theme.css          the `ambra` theme: tokens on top of @inglorious/ui
   types/               one folder per type: template, handlers, helpers, style
 scripts/               browser-driven checks, measurements and screenshots
+docs/
+  why-the-rewrite.md   measured comparison against the previous two-file site
 ```
 
 ## Adding something

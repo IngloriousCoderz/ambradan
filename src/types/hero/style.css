@@ -1,0 +1,120 @@
+.site-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 88px 0 64px;
+  background: var(--iw-color-bg);
+}
+
+/* Faint ruled paper behind the hero. */
+.site-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.38;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 31px,
+    var(--site-line) 31px 32px
+  );
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 70%);
+  mask-image: linear-gradient(180deg, #000, transparent 70%);
+}
+
+.site-hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .site-hero {
+    padding: 54px 0 44px;
+  }
+
+  .site-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+/* A dashed rule with a short solid lead-in. */
+.site-rule {
+  position: relative;
+  height: 10px;
+  margin-bottom: 22px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--site-line-strong) 0 1px,
+    transparent 1px 8px
+  );
+  background-size: 100% 6px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.site-rule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 120px;
+  height: 10px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--site-blue) 0 1px,
+    transparent 1px 8px
+  );
+}
+
+.site-hero-title {
+  max-width: 14ch;
+  margin: 14px 0 20px;
+  font-size: clamp(40px, 5.8vw, 72px);
+}
+
+.site-hero-lead {
+  font-size: 19px;
+  max-width: 48ch;
+}
+
+.site-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.site-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 34px;
+  max-width: 60ch;
+  font-family: var(--iw-font-family-mono);
+  font-size: 12.5px;
+  color: var(--iw-color-text-muted);
+}
+
+.site-hero-meta span::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  vertical-align: 2px;
+  border-radius: 50%;
+  background: var(--site-blue);
+}
+
+.site-hero-meta b {
+  font-weight: 500;
+  color: var(--iw-color-text);
+}
+
+.site-hero-stack {
+  position: relative;
+  padding-top: 10px;
+}

@@ -1,0 +1,145 @@
+/*
+ * The `ambra` theme: an editorial, paper-like reading theme on top of the
+ * Inglorious UI token contract.
+ *
+ * Semantic and component tokens are declared for the theme class rather than
+ * `:root`, and mode overrides for the combined class, so switching
+ * `iw-theme-light` / `iw-theme-dark` re-resolves every component.
+ *
+ * The one exception is the light palette, which is also declared on `:root`.
+ * The theme class is put on <html> by the inline script in `site.config.js`,
+ * because it has to be decided before first paint to avoid a flash — which
+ * means a reader with scripting switched off would otherwise get no palette at
+ * all, no fonts, and a transparent background. Declaring light on `:root` makes
+ * the un-scripted page correct; the dark block is a more specific selector, so
+ * adding the class still wins when there is one.
+ *
+ * Palette
+ *   paper  #FFFFFF / #0B0F1A
+ *   blue   #2B5BFF, the single accent
+ */
+
+:root,
+.iw-theme-ambra {
+  /* Type ----------------------------------------------------------------- */
+  --iw-font-family-sans:
+    "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  --iw-font-family-mono: "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Geometry: this is a print-inspired theme, corners stay tight ------------ */
+  --iw-radius-sm: 3px;
+  --iw-radius-md: 6px;
+  --iw-radius-lg: 8px;
+  --iw-radius-xl: 12px;
+
+  --iw-color-primary: #2b5bff;
+  --iw-color-primary-hover: #1e45d8;
+  --iw-color-primary-active: #1a3cb8;
+  --iw-color-primary-text: #ffffff;
+
+  /* Semantic, light ------------------------------------------------------- */
+  --iw-color-bg: #ffffff;
+  --iw-color-bg-secondary: #f6f7fb;
+  --iw-color-bg-tertiary: #eef1fa;
+  --iw-color-surface: #ffffff;
+  --iw-color-surface-hover: #f6f7fb;
+  --iw-color-surface-active: #eef1fa;
+  --iw-color-text: #0b1220;
+  --iw-color-text-secondary: #4a5568;
+  --iw-color-text-muted: #5f6879;
+  --iw-color-border: #e4e7ef;
+  --iw-color-border-focus: #2b5bff;
+
+  /* Site-specific, light -------------------------------------------------- */
+  --site-line: #e4e7ef;
+  --site-line-strong: #d3d8e6;
+  --site-blue: #2b5bff;
+  --site-blue-soft: #e8eeff;
+  --site-blue-ink: #0f2a9e;
+  --site-ink: #0b1220;
+  --site-shadow:
+    0 1px 2px rgb(11 18 32 / 6%), 0 24px 48px -24px rgb(11 18 32 / 25%);
+
+  /* Component: button ----------------------------------------------------- */
+  --iw-button-radius: var(--iw-radius-md);
+  --iw-button-shadow: none;
+  --iw-button-shadow-hover: none;
+  --iw-button-bg: #ffffff;
+  --iw-button-bg-hover: #f6f7fb;
+  --iw-button-bg-active: #eef1fa;
+  --iw-button-text: #0b1220;
+  --iw-button-border: #d3d8e6;
+  --iw-button-outline-bg: transparent;
+  --iw-button-outline-text: #0b1220;
+  --iw-button-outline-border: #d3d8e6;
+
+  /* Component: card -------------------------------------------------------- */
+  --iw-card-bg: #ffffff;
+  --iw-card-border: #e4e7ef;
+  --iw-card-radius: var(--iw-radius-md);
+  --iw-card-shadow: none;
+  --iw-card-shadow-hover: none;
+  --iw-card-padding: 1.375rem;
+
+  /* Component: dialog ------------------------------------------------------ */
+  --iw-shadow-lg: 0 40px 90px rgb(0 0 0 / 35%);
+
+  /* Component: chip -------------------------------------------------------- */
+  --iw-chip-bg: #e8eeff;
+  --iw-chip-text: #0f2a9e;
+  --iw-chip-radius: 4px;
+}
+
+.iw-theme-ambra.iw-theme-dark {
+  --iw-color-primary: #5b82ff;
+  --iw-color-primary-hover: #7a9aff;
+  --iw-color-primary-active: #93adff;
+  --iw-color-primary-text: #0b0f1a;
+
+  --iw-color-bg: #0b0f1a;
+  --iw-color-bg-secondary: #10162a;
+  --iw-color-bg-tertiary: #151c33;
+  --iw-color-surface: #10162a;
+  --iw-color-surface-hover: #151c33;
+  --iw-color-surface-active: #1b2440;
+  --iw-color-text: #eef1f7;
+  --iw-color-text-secondary: #b4bccc;
+  --iw-color-text-muted: #8992a8;
+  --iw-color-border: #222a40;
+  --iw-color-border-focus: #5b82ff;
+
+  --site-line: #222a40;
+  --site-line-strong: #2e3852;
+  --site-blue: #5b82ff;
+  --site-blue-soft: #182552;
+  --site-blue-ink: #c7d3ff;
+  --site-ink: #eef1f7;
+  --site-shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 24px 48px -24px rgb(0 0 0 / 60%);
+
+  --iw-button-bg: #10162a;
+  --iw-button-bg-hover: #151c33;
+  --iw-button-bg-active: #1b2440;
+  --iw-button-text: #eef1f7;
+  --iw-button-border: #2e3852;
+  --iw-button-outline-border: #2e3852;
+
+  --iw-card-bg: #10162a;
+  --iw-card-border: #222a40;
+  --iw-card-shadow:
+    0 1px 2px rgb(0 0 0 / 40%), 0 24px 48px -24px rgb(0 0 0 / 60%);
+
+  --iw-shadow-lg: 0 40px 90px rgb(0 0 0 / 60%);
+
+  --iw-chip-bg: #182552;
+  --iw-chip-text: #c7d3ff;
+}
+
+/* Form controls and scrollbars follow the resolved mode. */
+.iw-theme-ambra {
+  color-scheme: light;
+}
+
+.iw-theme-ambra.iw-theme-dark {
+  color-scheme: dark;
+}

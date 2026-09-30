@@ -1,0 +1,357 @@
+/*
+ * Reset, type scale and the primitives every page shares.
+ *
+ * Naming: `@inglorious/ui` owns the `iw-` namespace. App-local types defined in
+ * src/types use the `site-` prefix in this file and its siblings, because six
+ * pages draw on the same editorial styles and CSS modules would fragment them.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(66px + env(safe-area-inset-top, 0px));
+}
+
+body {
+  margin: 0;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--iw-color-bg);
+  color: var(--iw-color-text);
+  font-family: var(--iw-font-family-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-variant-ligatures: common-ligatures;
+  font-synthesis-weight: none;
+}
+
+a {
+  color: var(--iw-color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--iw-color-primary);
+  outline-offset: 3px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--site-line);
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------- type --- */
+
+.site-h1,
+.site-h2,
+.site-h3 {
+  margin: 0;
+  text-wrap: balance;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+}
+
+.site-h1 {
+  font-size: clamp(34px, 5.4vw, 60px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.site-h2 {
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+.site-h3 {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.site-h4 {
+  margin: 18px 0 6px;
+  font-family: var(--iw-font-family-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--iw-color-text-muted);
+}
+
+.site-eyebrow {
+  font-family: var(--iw-font-family-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--site-blue);
+  margin: 0;
+}
+
+.site-lead {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 18px;
+  color: var(--iw-color-text-secondary);
+}
+
+.site-hint {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  color: var(--iw-color-text-muted);
+}
+
+.site-accent {
+  color: var(--site-blue);
+}
+
+.site-mono {
+  font-family: var(--iw-font-family-mono);
+  letter-spacing: 0.04em;
+  color: var(--iw-color-text-muted);
+}
+
+.site-center {
+  text-align: center;
+}
+
+.site-center .site-lead {
+  margin-inline: auto;
+}
+
+.site-center .site-h2 {
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------- layout --- */
+
+.site-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+@media (max-width: 720px) {
+  .site-wrap {
+    padding: 0 18px;
+  }
+}
+
+.site-section {
+  padding: 76px 0;
+}
+
+@media (max-width: 720px) {
+  .site-section {
+    padding: 50px 0;
+  }
+}
+
+.site-section-alt {
+  background: var(--iw-color-bg-secondary);
+}
+
+.site-section-tight {
+  padding: 56px 0 10px;
+}
+
+/* The centred intro block that opens most pages. */
+.site-head {
+  padding: 72px 0 34px;
+}
+
+@media (max-width: 720px) {
+  .site-head {
+    padding: 44px 0 22px;
+  }
+}
+
+/* ----------------------------------------------------------- controls --- */
+
+/*
+ * An <a> that looks like an Inglorious UI button. Inglorious UI's Button
+ * renders a <button>, so links that navigate need their own element; reusing
+ * the button classes keeps one visual definition.
+ */
+.site-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 1px solid var(--iw-button-border);
+  border-radius: var(--iw-radius-md);
+  background: var(--iw-button-bg);
+  color: var(--iw-button-text);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--iw-transition-fast),
+    border-color var(--iw-transition-fast);
+}
+
+.site-btn:hover {
+  text-decoration: none;
+  background: var(--iw-button-bg-hover);
+  border-color: var(--iw-color-text);
+}
+
+.site-btn-primary {
+  background: var(--iw-color-primary);
+  border-color: var(--iw-color-primary);
+  color: var(--iw-color-primary-text);
+}
+
+.site-btn-primary:hover {
+  background: var(--iw-color-primary-hover);
+  border-color: var(--iw-color-primary-hover);
+}
+
+.site-btn-sm {
+  padding: 8px 13px;
+  font-size: 14px;
+}
+
+.site-btn-arr {
+  font-family: var(--iw-font-family-mono);
+}
+
+/* The animated dot on the live-programme call to action. */
+.site-pulse {
+  display: inline-block;
+  flex: 0 0 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  position: relative;
+}
+
+.site-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: site-pulse 1.6s ease-out infinite;
+}
+
+@keyframes site-pulse {
+  from {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* A small uppercase label. */
+.site-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--site-blue-soft);
+  color: var(--site-blue-ink);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.site-tag-grey {
+  background: var(--iw-color-bg-tertiary);
+  color: var(--iw-color-text-secondary);
+}
+
+.site-tag-mono {
+  font-family: var(--iw-font-family-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+  margin-left: 6px;
+}
+
+/* ------------------------------------------------------------ reveal --- */
+
+/*
+ * Entrance animation. Elements opt in with `site-reveal`; the reveal type adds
+ * `is-in` once the element has crossed into the viewport.
+ *
+ * The hidden state is scoped to `.ambra-js`, a class the inline script in
+ * `site.config.js` puts on <html>. Without that class the elements are simply
+ * visible, so a reader whose script fails, or who has JavaScript switched off,
+ * still gets the whole page rather than a hero and an empty column.
+ */
+.ambra-js .site-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ambra-js .site-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.site-reveal-1 {
+  transition-delay: 0.08s;
+}
+
+.site-reveal-2 {
+  transition-delay: 0.16s;
+}
+
+.site-reveal-3 {
+  transition-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .ambra-js .site-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

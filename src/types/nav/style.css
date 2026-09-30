@@ -1,0 +1,137 @@
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--iw-color-bg) 84%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--site-line);
+}
+
+.site-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 66px;
+}
+
+.site-nav-brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--iw-color-text);
+  white-space: nowrap;
+}
+
+.site-nav-brand:hover {
+  text-decoration: none;
+}
+
+.site-nav-links {
+  display: flex;
+  gap: 2px;
+  margin-left: 10px;
+}
+
+.site-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border-radius: var(--iw-radius-md);
+  color: var(--iw-color-text-secondary);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.site-nav-link:hover {
+  background: var(--iw-color-bg-secondary);
+  color: var(--iw-color-text);
+  text-decoration: none;
+}
+
+.site-nav-link.is-active {
+  color: var(--site-blue);
+  background: var(--site-blue-soft);
+}
+
+.site-nav-link .site-pulse {
+  color: var(--site-blue);
+  width: 8px;
+  height: 8px;
+  flex-basis: 8px;
+}
+
+.site-nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-lang {
+  padding: 6px 9px;
+  border: 1px solid var(--site-line);
+  border-radius: var(--iw-radius-md);
+  font-family: var(--iw-font-family-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--iw-color-text-secondary);
+}
+
+.site-lang:hover {
+  color: var(--site-blue);
+  border-color: var(--site-blue);
+  text-decoration: none;
+}
+
+.site-burger {
+  display: none;
+  padding: 7px 10px;
+  border: 1px solid var(--site-line);
+  border-radius: var(--iw-radius-md);
+  background: transparent;
+  color: var(--iw-color-text);
+  cursor: pointer;
+}
+
+.site-mobile-nav {
+  display: none;
+  border-top: 1px solid var(--site-line);
+  background: var(--iw-color-bg);
+}
+
+.site-mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-top: 1px solid var(--site-line);
+  color: var(--iw-color-text);
+  font-weight: 500;
+}
+
+.site-mobile-link.is-active {
+  color: var(--site-blue);
+}
+
+.site-mobile-link .site-pulse {
+  color: var(--site-blue);
+  width: 8px;
+  height: 8px;
+  flex-basis: 8px;
+}
+
+@media (max-width: 900px) {
+  .site-nav-links,
+  .site-nav-cta {
+    display: none;
+  }
+
+  .site-burger {
+    display: inline-block;
+  }
+
+  .site-mobile-nav.is-open {
+    display: block;
+  }
+}

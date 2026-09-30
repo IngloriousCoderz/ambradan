@@ -1,0 +1,37 @@
+.site-theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--site-line);
+  border-radius: var(--iw-radius-md);
+  background: transparent;
+  color: var(--iw-color-text-secondary);
+  cursor: pointer;
+  transition:
+    background-color var(--iw-transition-fast),
+    color var(--iw-transition-fast);
+}
+
+.site-theme-btn:hover {
+  background: var(--iw-color-bg-secondary);
+  color: var(--iw-color-text);
+}
+
+/*
+ * Both icons ship in the markup so the static build and the browser agree on
+ * the tree; the theme class decides which one is visible.
+ */
+.site-theme-icon {
+  display: none;
+}
+
+.iw-theme-light .site-theme-sun,
+:root:not(.iw-theme-ambra) .site-theme-sun {
+  display: block;
+}
+
+.iw-theme-dark .site-theme-moon {
+  display: block;
+}

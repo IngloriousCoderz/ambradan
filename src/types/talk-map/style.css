@@ -1,0 +1,56 @@
+.site-map-wrap {
+  position: relative;
+  margin-top: 14px;
+}
+
+.site-map {
+  height: 320px;
+  border: 1px solid var(--site-line);
+  border-radius: var(--iw-radius-md);
+  background: var(--iw-color-bg-secondary);
+  z-index: 0;
+}
+
+/* Leaflet paints its own controls; keep them below the sticky navigation. */
+.site-map .leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.site-map-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  text-align: center;
+  background: var(--iw-color-bg-secondary);
+  font-size: 12.5px;
+  color: var(--iw-color-text-muted);
+}
+
+.site-map-note {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  color: var(--iw-color-text-secondary);
+}
+
+.site-map-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--iw-color-text-muted);
+}
+
+.site-map-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  vertical-align: -1px;
+  border-radius: 50%;
+}

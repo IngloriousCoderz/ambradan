@@ -1,0 +1,211 @@
+/*
+ * Card grid, entry card and the detail modal.
+ *
+ * The entry card is an Inglorious UI Card with these tokens restated for this
+ * theme; only what the design system does not already express lives here.
+ */
+
+.site-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.site-grid-two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 900px) {
+  .site-grid,
+  .site-grid-two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .site-grid,
+  .site-grid-two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.site-grid-cell {
+  display: flex;
+}
+
+.site-grid-cell > * {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------ card --- */
+
+.site-entry-card {
+  border-color: var(--site-line);
+  transition: border-color var(--iw-transition-fast);
+}
+
+.site-entry-card:hover {
+  border-color: var(--site-blue);
+}
+
+.site-entry-card .iw-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.site-entry-card .iw-card-footer {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.site-card-date {
+  font-family: var(--iw-font-family-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--iw-color-text-muted);
+}
+
+.site-card-title {
+  margin: 6px 0 10px;
+  font-size: 19px;
+  font-weight: 700;
+  font-stretch: 94%;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--iw-color-text);
+}
+
+.site-card-note {
+  margin: 0 0 12px;
+  font-size: 14.5px;
+  color: var(--iw-color-text-secondary);
+}
+
+.site-terms {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 4px 0 12px;
+  font-size: 13.5px;
+}
+
+.site-terms dt {
+  padding-top: 2px;
+  font-family: var(--iw-font-family-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--iw-color-text-muted);
+}
+
+.site-terms dd {
+  margin: 0;
+  color: var(--iw-color-text);
+}
+
+.site-card-open {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--site-blue);
+}
+
+/* ----------------------------------------------------------- modal --- */
+
+.site-modal {
+  max-width: 640px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 28px 30px;
+  position: relative;
+}
+
+.site-modal .iw-dialog-body {
+  margin-top: 0;
+}
+
+.site-modal-date {
+  font-family: var(--iw-font-family-mono);
+  font-size: 12px;
+  color: var(--iw-color-text-muted);
+}
+
+.site-modal-title {
+  margin: 6px 0 12px;
+  padding-right: 40px;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--iw-color-text);
+}
+
+.site-modal-heading {
+  margin: 18px 0 6px;
+  font-family: var(--iw-font-family-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--iw-color-text-muted);
+}
+
+.site-modal-body {
+  margin: 0 0 12px;
+  font-size: 15.5px;
+  color: var(--iw-color-text-secondary);
+}
+
+.site-modal-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 15px;
+  color: var(--iw-color-text-secondary);
+}
+
+.site-modal-list li {
+  margin: 4px 0;
+}
+
+.site-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.site-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  margin: 0 0 12px;
+}
+
+/*
+ * Inglorious UI's dialog header is a flex row that only holds the title when
+ * one is given. The panel supplies its own title markup, so the close button
+ * is lifted out of the flow and pinned to the corner.
+ */
+.site-modal .iw-dialog-header {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.site-modal .iw-dialog-close {
+  width: auto;
+  height: auto;
+  padding: 5px 10px;
+  border: 1px solid var(--site-line-strong);
+  border-radius: var(--iw-radius-md);
+  background: var(--iw-color-bg);
+  font-weight: 600;
+  line-height: 1.2;
+}

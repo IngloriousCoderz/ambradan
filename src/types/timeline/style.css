@@ -1,0 +1,77 @@
+.site-timeline-section {
+  padding: 70px 0 90px;
+}
+
+.site-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+/* The spine behind the dots. */
+.site-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 2px;
+  background: var(--site-line-strong);
+}
+
+@media (max-width: 820px) {
+  .site-timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .site-timeline::before {
+    display: none;
+  }
+}
+
+.site-timeline-item {
+  position: relative;
+  padding-top: 26px;
+}
+
+.site-timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--site-blue);
+  border: 3px solid var(--iw-color-bg);
+  box-shadow: 0 0 0 2px var(--site-blue);
+}
+
+/* The step still in progress reads as a ring, not a dot. */
+.site-timeline-item.is-open::before {
+  background: var(--iw-color-bg);
+}
+
+.site-timeline-date {
+  font-family: var(--iw-font-family-mono);
+  font-size: 12px;
+  color: var(--iw-color-text-muted);
+}
+
+.site-timeline-item b {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.site-timeline-item span {
+  display: block;
+  margin-top: 3px;
+  font-size: 13.5px;
+  color: var(--iw-color-text-secondary);
+}

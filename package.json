@@ -1,0 +1,41 @@
+{
+  "name": "ambradan",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Ambra Danesin \u2014 AI systems developer and independent AI safety researcher",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "dev": "ssx dev",
+    "build": "ssx build --force",
+    "build:incremental": "ssx build",
+    "preview": "serve dist",
+    "verify": "node verify.mjs",
+    "verify:responsive": "node verify-responsive.mjs",
+    "verify:nav": "node verify-nav.mjs",
+    "measure:cls": "node measure-cls.mjs",
+    "measure:perf": "node measure-perf.mjs",
+    "shots": "node shot.mjs /:light /:dark /research:light /teaching:dark /work:light /programs:dark /contact:light /programs/session:light:fold /programs/guide:dark"
+  },
+  "dependencies": {
+    "@inglorious/ssx": "^2.1.5",
+    "@inglorious/store": "^11.0.1",
+    "@inglorious/ui": "^7.1.1",
+    "@inglorious/web": "^6.4.1",
+    "leaflet": "^1.9.4",
+    "markdown-it": "^15.0.2"
+  },
+  "engines": {
+    "node": ">= 22"
+  },
+  "devDependencies": {
+    "@inglorious/eslint-config": "^1.1.2",
+    "eslint": "^10.11.0",
+    "globals": "^16.5.0",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9",
+    "serve": "^14.2.6"
+  }
+}

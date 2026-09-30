@@ -1,0 +1,36 @@
+.site-stats {
+  padding: 60px 0;
+  background: var(--site-blue);
+  color: #fff;
+}
+
+.site-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  text-align: center;
+}
+
+@media (max-width: 820px) {
+  .site-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.site-stats b {
+  display: block;
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 750;
+  font-stretch: 88%;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.site-stats span {
+  display: block;
+  max-width: 22ch;
+  margin: 10px auto 0;
+  font-size: 14px;
+  opacity: 0.88;
+}

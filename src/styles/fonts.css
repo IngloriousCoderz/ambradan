@@ -1,0 +1,22 @@
+/*
+ * Self-hosted variable fonts. The site makes a point of loading no third-party
+ * fonts, so Archivo and JetBrains Mono are served from /img rather than from a
+ * CDN.
+ */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("/img/archivo-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/img/jetbrains-mono-var.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}

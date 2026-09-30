@@ -1,0 +1,39 @@
+.site-feature-alt {
+  background: var(--iw-color-bg-secondary);
+}
+
+/*
+ * `site-feature-grid` and `site-feature-flip` both sit on the same element, so
+ * every rule has to name both. A single-class override would lose to the
+ * two-class flip rule on specificity, at every width.
+ */
+.site-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.site-feature-grid.site-feature-flip {
+  grid-template-columns: 1.1fr 1fr;
+}
+
+.site-feature-grid.site-feature-flip .site-feature-copy {
+  order: 2;
+}
+
+@media (max-width: 900px) {
+  .site-feature-grid,
+  .site-feature-grid.site-feature-flip {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .site-feature-grid.site-feature-flip .site-feature-copy {
+    order: 0;
+  }
+}
+
+.site-feature-lead {
+  font-size: 17px;
+}

@@ -57,6 +57,17 @@
   text-decoration: none;
 }
 
+.site-footer-credit {
+  color: var(--site-blue);
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-footer-credit:hover {
+  color: var(--iw-color-primary-hover);
+}
+
 .site-footer-bar {
   display: flex;
   justify-content: space-between;

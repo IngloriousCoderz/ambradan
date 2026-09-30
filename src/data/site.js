@@ -22,3 +22,11 @@ export const CONTACT = {
 
 /** Date the site content was last reviewed, as shown in the footer. */
 export const CONTENT_UPDATED = "29 Sep 2026"
+
+/**
+ * What the site is built with. An external address, not a translated string: the
+ * label around it lives in the locale files as `footer.madeWith`.
+ */
+export const CREDITS = {
+  href: "https://inglorious.dev/web/",
+}

@@ -35,9 +35,21 @@ before trusting a skill file.** The CSS export paths are
 
 ## Traps in this codebase
 
-- **`npm run build` is `--force` on purpose.** SSX's incremental cache hashes
-  only `src/store/entities.js`, so a change to a type or page is skipped and
-  `dist/` keeps stale HTML. Do not "optimise" this away.
+- **`npm run build` is `--force`, and that is a deliberate scope boundary.**
+  SSX decides what to re-render by hashing a page's own import graph, plus a
+  shared hash over `store/entities`, `store/types` and `site.config` (fixed
+  upstream in `@inglorious/ssx` 2.1.6). That covers page modules, locale files,
+  data files and the site config. It does not reach `src/types/**`, because a
+  type is rendered by name through the store — `localised(api, "footer", …)` —
+  so a type module is in no page's import graph, and the graph is not populated
+  for it yet when the hash is taken. That is an accepted limit, not a bug:
+  a type is by construction shared by every page, so per-page invalidation would
+  buy nothing and cost a render-aware module graph.
+  **The rule: `build:incremental` is safe for pages, locales, data and config.
+  If you have touched anything under `src/types/` or `src/styles/`, use
+  `npm run build`.** That is what the `--force` on the default script is for.
+  Verified: edit a type template, run `npm run build:incremental`, and
+  `dist/index.html` comes out byte-identical.
 - **SSX swallows load errors.** `getStoreStuff` wraps module loading in a bare
   `catch`, so a broken `src/store/types.js` or `entities.js` produces "No
   renderer for X" in the output rather than a build error. Check the log, and
@@ -71,11 +83,13 @@ before trusting a skill file.** The CSS export paths are
 - **`npm run build` empties `dist/` before it renders.** A failure part-way
   through leaves a half-built `dist/`, so check the exit status rather than
   looking for files.
-- **Vite's `✓ built in …ms` is not the site building.** That line is the client
-  bundle finishing, printed before SSX renders a single page. The line that
-  means the pages were written is `✨ Build complete!`, and a failure prints
-  `Build failed:`. Grepping for `✓ built` has passed a build where every page
-  failed to render.
+- **Check the build's exit status, not its log line.** I once passed a build
+  where every page had failed to render, because I grepped for a success marker
+  instead of checking the status. `ssx build` does `process.exit(1)` and prints
+  `Build failed:`, so the status is authoritative and the log is not. (For the
+  record, Vite's `✓ built in …ms` is printed _after_ the HTML is written, so it
+  is not a misleading "the site is not built yet" marker — that was my guess and
+  it was wrong.)
 - **lit's SSR renderer cannot interpolate a tag name.** `<${level}>` throws
   `Unexpected final partIndex` at build time and leaves an empty `dist/`. Choose
   the element in JS and return one of two templates instead.

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "description": "Ambra Danesin \u2014 AI systems developer and independent AI safety researcher",
+  "description": "Ambra Danesin — AI systems developer and independent AI safety researcher",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write .",
@@ -20,7 +20,7 @@
     "shots": "node scripts/shot.mjs /:light /:dark /research:light /teaching:dark /work:light /programs:dark /contact:light /programs/session:light:fold /programs/guide:dark"
   },
   "dependencies": {
-    "@inglorious/ssx": "^2.1.5",
+    "@inglorious/ssx": "^2.1.7",
     "@inglorious/store": "^11.0.1",
     "@inglorious/ui": "^7.1.1",
     "@inglorious/web": "^6.4.1",

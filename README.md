@@ -10,8 +10,11 @@ beyond lit-html, no cookies, no analytics, no third-party fonts.
 
 ## Commands
 
+Dependencies are installed with **pnpm**; the `npm run …` scripts below work
+as they are, but `npm install` is not supported.
+
 ```bash
-npm install
+pnpm install
 npm run dev              # http://localhost:3000  (PORT=3111 npm run dev to move it)
 npm run build            # static output in dist/
 npm run preview          # serve dist/
@@ -19,10 +22,17 @@ npm run lint
 npm run format
 ```
 
-`npm run build` passes `--force`. SSX's incremental cache hashes only
-`src/store/entities.js`, so an edit to a type or a page would be skipped and
-`dist/` would keep serving the previous HTML. `npm run build:incremental` opts
-back in once the site is large enough for it to be worth the risk.
+`npm run build` passes `--force`, and that is the safe default. SSX re-renders a
+page when its own import graph changes, or when the shared sources —
+`store/entities`, `store/types`, `site.config` — change. That covers pages,
+locales, data and config. It does not reach `src/types/**` or `src/styles/**`,
+because a type is rendered by name through the store and so is in no page's
+import graph. A type is shared by every page, so that is an accepted limit
+rather than a defect.
+
+`npm run build:incremental` opts back in and is safe **only** when the change
+is in `src/pages/`, `src/locales/`, `src/data/` or `site.config.js`. Touch
+anything under `src/types/` or `src/styles/` and use `npm run build`.
 
 ## Two languages
 
@@ -146,12 +156,10 @@ unless the type needs several instances or a starting value — then declare it 
   `cssCodeSplit: false` the HTML a crawler or a reader receives is unstyled and
   paints twice. That was the entire CLS problem: it measured 0.59 on the home
   page before the link and 0.000 after.
-- **`head` in `site.config.js` is emitted twice**, once either side of the meta
-  block, because SSX's layout renders it and the config again. Everything in it
-  appears duplicated in the document. That is harmless for the alternates, the
-  preloads and the pre-paint script, and is noted in the config, but it is why
-  there is no canonical link and no per-page metadata there: `src/types/document`
-  owns `<title>`, `lang` and the meta tags so they follow client-side routing.
+- **`src/types/document` owns `<title>`, `lang` and the meta tags.** They have
+  to be updated at runtime, because a client-side navigation changes the page
+  without requesting a new document. A page's `metadata` still sets the static
+  values, so a crawler and a reader-mode extractor get them from the HTML.
 - **The fonts are subset.** Archivo with its weight and width axes and
   JetBrains Mono are cut to the 199 characters the site can render, plus
   Latin-1 letters so a new Italian string does not fall back. That took them

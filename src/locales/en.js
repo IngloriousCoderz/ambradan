@@ -103,8 +103,9 @@ export const en = {
     writeHeading: "Write",
     updated: "updated",
     writeNote: "Italian or English. Usually within two days.",
+    madeWith: "Made with Inglorious Web",
     barNote:
-      "No cookies, no analytics, no third-party fonts. Hosted on GitHub Pages. The map loads from OpenStreetMap only if you open it.",
+      "No cookies, no analytics, no third-party fonts. The map loads from OpenStreetMap only if you open it.",
   },
 
   hero: {

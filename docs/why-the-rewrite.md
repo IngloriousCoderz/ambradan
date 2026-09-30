@@ -272,11 +272,13 @@ A rewrite that only lists wins is not a document anyone should trust.
   could hand to someone and they would work. The current site is a build with a
   dependency tree, and most of its size wins only exist because they are
   committed — the build contributes 57 kB of the 548 kB. That is a real cost.
-- **The original had no build step and no build to break.** The current one has an
-  SSX incremental cache that only hashes `entities.js`, so a change to a type or a
-  page is silently skipped unless the build is forced. This bit us during the
-  build — a template change failed to render every page and the build still
-  printed a success line from the bundler — and is written up in `AGENTS.md`.
+- **The original had no build step and no build to break.** SSX's incremental
+  cache reaches a page's own imports and the shared `store/` and `site.config`
+  files, but not `src/types/**`, because a type is rendered by name through the
+  store and so sits in no page's import graph. `npm run build` therefore forces a
+  clean build, and `build:incremental` is safe only for pages, locales, data and
+  config. Two framework bugs found during this rewrite — a duplicated `<head>`
+  and the incremental cache — are fixed upstream in 2.1.6 and 2.1.7.
 - **More machinery for the same job.** 70 kB of JavaScript where the original had
   none on the critical path, a client router, and a component system. The bill
   comes to roughly zero on the home page and is worth paying for the no-JS path
@@ -288,15 +290,14 @@ A rewrite that only lists wins is not a document anyone should trust.
 ## Still open
 
 - No `og:image`, so a shared link has no visual preview.
-- `head` in `site.config.js` is emitted twice by SSX's layout, so the hreflang
-  alternates and the JSON-LD block each appear twice. Harmless for identical
-  copies, but it is why there is no canonical link.
+- No `canonical` link, so the `/it` and `/programs/session` duplicates are not
+  consolidated for a crawler. Not a framework limitation — a page's `metadata`
+  can return `head`, and with the duplicated-`head` bug fixed in
+  `@inglorious/ssx` 2.1.7 this is now just an omission.
 - Render-blocking CSS and unused CSS are still flagged. Neither carries score
   weight, and inlining critical CSS is a genuine regression risk.
 - The image optimizer runs at `quality: 100`, and neither version uses `srcset`,
   so a phone downloads desktop-sized screenshots.
-- No `canonical` link, so the `/it` and `/programs/session` duplicates are not
-  consolidated for a crawler.
 
 ## How to re-measure
 

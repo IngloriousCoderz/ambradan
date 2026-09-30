@@ -101,8 +101,9 @@ export const it = {
     writeHeading: "Scrivimi",
     updated: "aggiornato",
     writeNote: "Italiano o inglese. Di solito entro due giorni.",
+    madeWith: "Realizzato con Inglorious Web",
     barNote:
-      "Nessun cookie, nessuna analytics, nessun font di terzi. Ospitato su GitHub Pages. La mappa carica da OpenStreetMap solo se la apri.",
+      "Nessun cookie, nessuna analytics, nessun font di terzi. La mappa carica da OpenStreetMap solo se la apri.",
   },
 
   hero: {

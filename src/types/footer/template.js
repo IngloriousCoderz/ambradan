@@ -9,7 +9,7 @@
 
 import { html } from "@inglorious/web"
 
-import { CONTACT, CONTENT_UPDATED } from "../../data/site.js"
+import { CONTACT, CONTENT_UPDATED, CREDITS } from "../../data/site.js"
 import { localePath } from "../../locales/index.js"
 
 /** @this {FooterEntity} @returns {TemplateResult} */
@@ -61,7 +61,16 @@ export function render(entity) {
           >&copy; ${year} ${CONTACT.name} · ${c.footer.updated}
           ${CONTENT_UPDATED}</span
         >
-        <span>${c.footer.barNote}</span>
+        <span>
+          ${c.footer.barNote}
+          <a
+            class="site-footer-credit"
+            href=${CREDITS.href}
+            target="_blank"
+            rel="noopener"
+            >${c.footer.madeWith}</a
+          >
+        </span>
       </div>
     </footer>
   `

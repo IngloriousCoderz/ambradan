@@ -107,4 +107,42 @@ console.log(
   "errors:",
   errors.filter((e) => !/websocket/i.test(e)),
 )
+
+/*
+ * The switcher names the language you are about to get, not the one you are in:
+ * "IT" on the English site, "EN" on the Italian one. Both copies of the label
+ * said "EN" for a while, so it is worth asserting rather than assuming.
+ */
+let switchProblems = 0
+for (const [route, current, expected] of [
+  ["/", "en", "IT"],
+  ["/research", "en", "IT"],
+  ["/it", "it", "EN"],
+  ["/it/research", "it", "EN"],
+]) {
+  await page.goto(`${base}${route}`, { waitUntil: "load" })
+  const seen = await page.evaluate(() => {
+    const a = document.querySelector(".site-lang")
+    return {
+      label: a?.textContent.trim(),
+      lang: a?.getAttribute("lang"),
+      page: document.documentElement.lang,
+    }
+  })
+  const ok =
+    seen.label === expected &&
+    seen.lang === expected.toLowerCase() &&
+    seen.page === current
+  if (!ok) switchProblems++
+  console.log(
+    `${ok ? "ok  " : "FAIL"} switcher on ${route.padEnd(13)} reads "${seen.label}" lang="${seen.lang}" on a ${seen.page} page`,
+  )
+}
+console.log(
+  switchProblems
+    ? `${switchProblems} switcher label(s) wrong`
+    : "switcher labels agree with the target language",
+)
+
 await browser.close()
+process.exit(switchProblems ? 1 : 0)

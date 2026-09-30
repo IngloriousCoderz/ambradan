@@ -63,7 +63,7 @@ export const en = {
       { label: "Programs", path: "/programs", isLive: true },
       { label: "Contact", path: "/contact", isLive: false },
     ],
-    other: { label: "EN", title: "English version", lang: "en" },
+    other: { label: "IT", title: "Versione italiana", lang: "it" },
     cta: "Talk to me",
     menu: "Menu",
     themeLabel: "Toggle dark mode",
